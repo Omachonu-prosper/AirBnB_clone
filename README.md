@@ -1,7 +1,5 @@
 # 0x00. AirBnB clone - The console
 
-![hbnb logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png)
-
 ## Background Context
 ### Welcome to the AirBnB clone project!
 Before starting, please read the AirBnB concept page.
@@ -63,5 +61,3 @@ But also in non-interactive mode: (like the Shell project in C)
 	$
 
 All tests should also pass in non-interactive mode: `$ echo "python3 -m unittest discover tests" | bash`
-
-![Current stage in app development process](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png)
