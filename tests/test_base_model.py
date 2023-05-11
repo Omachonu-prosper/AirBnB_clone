@@ -39,15 +39,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(model, 'updated_at'))
         self.assertIsInstance(model.updated_at, datetime.datetime)
 
-    # def test_save(self):
-    #     """Test the save instance method
-    #     """
-    #     model = BaseModel()
-    #     self.assertIsInstance(model, BaseModel)
-    #     self.assertIsInstance(model.updated_at, datetime.datetime)
-    #     model.save()
-    #     self.assertNotEqual(model.created_at, model.updated_at)
-
     def test_to_dict(self):
         model = BaseModel()
         model_dict = model.to_dict()
@@ -57,3 +48,23 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model_dict['__class__'], str)
         self.assertIsInstance(model_dict['created_at'], str)
         self.assertIsInstance(model_dict['updated_at'], str)
+
+    def test_model_from_dict(self):
+        model_dict = {
+            'id': 'b382caeb-7ee1-40f4-920a-c38ea204e716',
+            'created_at': '2023-05-11T18:26:02.128833',
+            'updated_at': '2023-05-11T18:26:02.128833',
+            '__class__': 'BaseModel'
+        }
+        model = BaseModel(**model_dict)
+        self.assertIsInstance(model, BaseModel)
+        self.assertTrue(hasattr(model, 'id'))
+        self.assertTrue(hasattr(model, 'updated_at'))
+        self.assertTrue(hasattr(model, 'created_at'))
+        self.assertEqual(model.id, model_dict['id'])
+        self.assertEqual(
+            model.created_at.isoformat(),
+            model_dict['created_at'])
+        self.assertEqual(
+            model.updated_at.isoformat(),
+            model_dict['updated_at'])
