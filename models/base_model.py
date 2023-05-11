@@ -28,7 +28,10 @@ class BaseModel:
         """returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
-        model_dict = self.__dict__
+        instance_dict = self.__dict__.items()
+        model_dict = {}
+        for key, value in instance_dict:
+            model_dict[key] = value
         model_dict['__class__'] = self.__class__.__name__
         model_dict['created_at'] = self.created_at.isoformat()
         model_dict['updated_at'] = self.updated_at.isoformat()
