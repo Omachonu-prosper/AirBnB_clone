@@ -1,6 +1,6 @@
 # 0x00. AirBnB clone - The console
 
-![hbnb logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230511%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230511T014400Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9c0740d47e8fc5e0cb22ac3226a0abecc8e5d4a349e7f6917f0412a37f0ff18e)
+![hbnb logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png)
 
 ## Background Context
 ### Welcome to the AirBnB clone project!
@@ -62,6 +62,6 @@ But also in non-interactive mode: (like the Shell project in C)
 	(hbnb) 
 	$
 
-All tests should also pass in non-interactive mode: `code($ echo "python3 -m unittest discover tests" | bash)`
+All tests should also pass in non-interactive mode: `$ echo "python3 -m unittest discover tests" | bash`
 
-![Current stage in app development process](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230511%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230511T014400Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8f66fc1de7cc2e50c11258d323a49b35b494ae3514f6a26b708a2521b2bb3ac2)
+![Current stage in app development process](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png)
