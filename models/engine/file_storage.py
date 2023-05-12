@@ -21,6 +21,18 @@ class FileStorage():
         """
         return self.__objects
 
+    def show(self, id):
+        """Return the instance with the id if found
+        Return none if id is not found
+        """
+        return self.__objects.get(id)
+
+    def destroy(self, id):
+        """Delete an instamce of an object from storage
+        """
+        del self.__objects[f"BaseModel.{id}"]
+        self.save()
+
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id
         """
