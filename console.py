@@ -10,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
     def __init__(self):
         """Initialize the console with required properties
         """
-        super().__init__(self)
+        super().__init__()
         self.prompt = '(hbnb) '
 
     def do_quit(self, arg):
@@ -21,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """Quit command to exit the console
         """
+        print()
         exit()
 
     def emptyline(self):
