@@ -57,5 +57,4 @@ class BaseModel:
     def destroy(self):
         """Destructor for object instance
         """
-        models.storage.destroy(self.id)
-
+        models.storage.destroy(self)

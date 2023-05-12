@@ -7,6 +7,7 @@ JSON file to instances
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage():
@@ -27,10 +28,10 @@ class FileStorage():
         """
         return self.__objects.get(id)
 
-    def destroy(self, id):
+    def destroy(self, obj):
         """Delete an instamce of an object from storage
         """
-        del self.__objects[f"BaseModel.{id}"]
+        del self.__objects[f"{obj.__class__.__name__}.{obj.id}"]
         self.save()
 
     def new(self, obj):
@@ -60,4 +61,7 @@ class FileStorage():
                 objects = json.load(f)
 
             for key, value in objects.items():
-                self.__objects[key] = BaseModel(**value)
+                if value['__class__'] == 'BaseModel':
+                    self.__objects[key] = BaseModel(**value)
+                elif value['__class__'] == 'User':
+                    self.__objects[key] = User(**value)
