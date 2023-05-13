@@ -63,9 +63,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of an instance
-        based on the class name and id.
-        Ex:
-        $(hbnb) show BaseModel <id>
         """
         if not arg:
             print("** class name missing **")
@@ -81,11 +78,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all instances
-        based or not on the class name.
-        Ex:
-        $(hbnb) all BaseModel
-        or
-        $(hbnb) all
         """
         all_objs = []
         if arg and arg not in self.class_names:
@@ -101,9 +93,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id
-        (save the change into the JSON file).
-        Ex:
-        $(hbnb) destroy BaseModel 1234-1234-1234
         """
         if not arg:
             print("** class name missing **")
@@ -118,10 +107,7 @@ class HBNBCommand(cmd.Cmd):
             obj.destroy()
 
     def do_update(self, arg):
-        """Updates an instance based on the class name and id by adding
-        or updating attribute (save the change into the JSON file).
-        Ex:
-        $(hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"
+        """Updates an instance based on the class name and id
         """
         if not arg:
             print("** class name missing **")
