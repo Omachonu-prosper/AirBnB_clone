@@ -8,6 +8,11 @@ import shlex
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,7 +21,15 @@ class HBNBCommand(cmd.Cmd):
         """
         super().__init__()
         self.prompt = '(hbnb) '
-        self.class_names = ['BaseModel', 'User']
+        self.class_names = [
+            'BaseModel',
+            'User',
+            'Place',
+            'State',
+            'City',
+            'Amenity',
+            'Review'
+        ]
 
     def do_quit(self, arg):
         """Quit command to exit the console
@@ -43,14 +56,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg not in self.class_names:
             print("** class doesn't exist **")
-        elif arg == 'BaseModel':
-            model = BaseModel()
-            model.save()
-            print(model.id)
         else:
-            user = User()
-            user.save()
-            print(user.id)
+            obj = eval(f"{arg}()")
+            obj.save()
+            print(obj.id)
 
     def do_show(self, arg):
         """Prints the string representation of an instance
@@ -83,7 +92,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             for obj in storage.all().values():
-                all_objs.append(str(obj))
+                if arg:
+                    if arg == obj.__class__.__name__:
+                        all_objs.append(str(obj))
+                else:
+                    all_objs.append(str(obj))
             print(all_objs)
 
     def do_destroy(self, arg):

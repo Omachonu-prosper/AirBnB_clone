@@ -61,7 +61,4 @@ class FileStorage():
                 objects = json.load(f)
 
             for key, value in objects.items():
-                if value['__class__'] == 'BaseModel':
-                    self.__objects[key] = BaseModel(**value)
-                elif value['__class__'] == 'User':
-                    self.__objects[key] = User(**value)
+                self.__objects[key] = eval(f"{value['__class__']}(**{value})")
