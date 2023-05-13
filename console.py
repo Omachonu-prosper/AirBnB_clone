@@ -3,6 +3,7 @@
 """Entry point of the command interpreter
 """
 
+import re
 import cmd
 import shlex
 from models import storage
@@ -129,6 +130,24 @@ class HBNBCommand(cmd.Cmd):
             obj = storage.show(f"{class_name}.{id}")
             setattr(obj, attr_name, attr_value)
             obj.save()
+
+    def default(self, arg):
+        """Overide the default action of the console
+        """
+        re_str = r'^([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+)\((.*?)\)(?:\,(.*?))?$'
+        command = re.compile(re_str)
+        match = command.match(arg)
+
+        if match:
+            class_name = match.group(1)
+            method = match.group(2)
+            id = match.group(3)
+            update_dict = match.group(4)
+
+            if method == 'all':
+                self.do_all(class_name)
+        else:
+            super().default(arg)
 
 
 if __name__ == '__main__':
