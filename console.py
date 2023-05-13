@@ -67,14 +67,14 @@ class HBNBCommand(cmd.Cmd):
         """
         if not arg:
             print("** class name missing **")
-        elif arg.split()[0] not in self.class_names:
+        elif shlex.split(arg)[0] not in self.class_names:
             print("** class doesn't exist **")
-        elif len(arg.split()) < 2:
+        elif len(shlex.split(arg)) < 2:
             print("** instance id missing **")
-        elif not storage.show(f"{arg.split()[0]}.{arg.split()[1]}"):
+        elif not storage.show(f"{shlex.split(arg)[0]}.{shlex.split(arg)[1]}"):
             print("** no instance found **")
         else:
-            obj = storage.show(f"{arg.split()[0]}.{arg.split()[1]}")
+            obj = storage.show(f"{shlex.split(arg)[0]}.{shlex.split(arg)[1]}")
             print(obj)
 
     def do_all(self, arg):
@@ -97,14 +97,14 @@ class HBNBCommand(cmd.Cmd):
         """
         if not arg:
             print("** class name missing **")
-        elif arg.split()[0] not in self.class_names:
+        elif shlex.split(arg)[0] not in self.class_names:
             print("** class doesn't exist **")
-        elif len(arg.split()) < 2:
+        elif len(shlex.split(arg)) < 2:
             print("** instance id missing **")
-        elif not storage.show(f"{arg.split()[0]}.{arg.split()[1]}"):
+        elif not storage.show(f"{shlex.split(arg)[0]}.{shlex.split(arg)[1]}"):
             print("** no instance found **")
         else:
-            obj = storage.show(f"{arg.split()[0]}.{arg.split()[1]}")
+            obj = storage.show(f"{shlex.split(arg)[0]}.{shlex.split(arg)[1]}")
             obj.destroy()
 
     def do_update(self, arg):
@@ -131,10 +131,25 @@ class HBNBCommand(cmd.Cmd):
             setattr(obj, attr_name, attr_value)
             obj.save()
 
+    def do_count(self, arg):
+        """Retrieve the number of instances of a class"""
+        if not arg:
+            print("** class name missing **")
+        elif arg not in self.class_names:
+            print("** class doesn't exist **")
+        else:
+            objs = storage.all()
+            no_of_obj = 0
+
+            for obj in objs.values():
+                if arg == obj.__class__.__name__:
+                    no_of_obj += 1
+            print(no_of_obj)
+
     def default(self, arg):
         """Overide the default action of the console
         """
-        re_str = r'^([a-zA-Z0-9_]+)\.([a-zA-Z0-9_]+)\((.*?)\)(?:\,(.*?))?$'
+        re_str = r'^([a-zA-Z0-9_]+)\.([a-z]+)\((.*?)\)$'
         command = re.compile(re_str)
         match = command.match(arg)
 
@@ -142,10 +157,27 @@ class HBNBCommand(cmd.Cmd):
             class_name = match.group(1)
             method = match.group(2)
             id = match.group(3)
-            update_dict = match.group(4)
 
             if method == 'all':
                 self.do_all(class_name)
+            elif method == 'count':
+                self.do_count(class_name)
+            elif method == 'show':
+                self.do_show(f"{class_name} {id}")
+            elif method == 'destroy':
+                self.do_destroy(f"{class_name} {id}")
+            elif method == 'update':
+                update_params = shlex.split(id)
+                id = update_params[0].strip(',')
+
+                if len(update_params) > 2:
+                    arg_name = update_params[1].strip(',')
+                    arg_value = update_params[2]
+                    self.do_update(
+                        f"{class_name} {id} {arg_name} '{arg_value}'"
+                    )
+            else:
+                print(f"*** Unknown method: {method}")
         else:
             super().default(arg)
 
