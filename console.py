@@ -17,10 +17,10 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initialize the console with required properties
         """
-        super().__init__()
+        super().__init__(kwargs)
         self.prompt = '(hbnb) '
         self.class_names = [
             'BaseModel',
