@@ -2,3 +2,5 @@ __pycache__
 test.py
 file.json
 main.py
+venv
+w3c_validator.py
