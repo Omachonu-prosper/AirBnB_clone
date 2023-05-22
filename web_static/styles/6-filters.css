@@ -66,6 +66,7 @@ ul.popover {
     top: 67.5px;
     padding: 20px;
     display: none;
+    z-index: 100;
 }
 
 ul.popover li {
