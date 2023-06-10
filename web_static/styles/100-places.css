@@ -91,3 +91,65 @@ section.places .description {
 	text-align: left;
 	padding-bottom: 20px;
 }
+
+section.places .amenities,
+section.places .reviews {
+	margin-top: 40px;
+	text-align: left;
+}
+
+section.places .amenities h2,
+section.places .reviews h2 {
+	font-size: 16px;
+	margin-bottom: 20px;
+	border-bottom: solid 1px #DDDDDD;
+	padding-bottom: 5px;
+}
+
+section.places .amenities li {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	margin: 3px 0;
+}
+
+section.places .amenity_icon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+section.places .amenity_icon.tv {
+	background-image: url('../images/icon_tv.png');
+}
+
+section.places .amenity_icon.wifi {
+	background-image: url('../images/icon_wifi.png');
+}
+
+section.places .amenity_icon.pet {
+	background-image: url('../images/icon_pets.png');
+}
+
+section.places .amenity_icon.tv,
+section.places .amenity_icon.wifi,
+section.places .amenity_icon.pet {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+section.places .reviews li {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+section.places .reviews li h3 {
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+
+section.places .reviews li p {
+	font-size: 12px;
+}
