@@ -1,0 +1,21 @@
+header {
+	background-color: #FFFFFF;
+	height: 70px;
+	width: 100%;
+	border-bottom: solid 1px #CCCCCC;
+}
+
+header .logo {
+	margin: 0 20px;
+	width: 150px;
+	height: 100%;
+	background-image: url('../images/logo.png');
+	background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 425px) {
+	header .logo {
+		margin: 0;
+	}
+}
